@@ -1,0 +1,39 @@
+services:
+  ros2:
+    build:
+      context: ./ros2_docker
+    container_name: ros2_container
+    privileged: true
+    tty: true
+    volumes:
+      - ./ros2_ws:/ros2_ws
+      - /dev:/dev
+    devices:
+      - "/dev/ttyACM0:/dev/ttyACM0"
+      - "/dev/ttyUSB0:/dev/ttyUSB0"
+    environment:
+      - DISPLAY=${DISPLAY}
+      - PYTHONUNBUFFERED=1
+    command: bash
+    networks:
+      - drone_network
+
+  arduino:
+    build:
+      context: ./arduino_cli_docker
+    container_name: arduino_container
+    privileged: true
+    tty: true
+    volumes:
+      - ./arduino_ws:/arduino_ws
+      - /dev:/dev
+    devices:
+      - "/dev/ttyACM0:/dev/ttyACM0"
+      - "/dev/ttyUSB0:/dev/ttyUSB0"
+    command: ["arduino-cli", "daemon"]
+    networks:
+      - drone_network
+
+networks:
+  drone_network:
+    driver: bridge
