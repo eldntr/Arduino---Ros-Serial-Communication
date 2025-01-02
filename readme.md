@@ -5,4 +5,16 @@ To run, do:
 3. `docker exec arduino_container arduino-cli upload -p /dev/ttyACM0 --fqbn arduino:avr:uno serial_test`
 4. `docker exec -it ros2_container python3 /ros2_ws/serial_test.py`
 
-Ensure your computer have installed docker and docker-compose
+Ensure your computer have installed docker and docker-composec
+
+Here's the sample output:
+```bash
+Received: Arduino received: Hello Arduino!
+Sent: Hello Arduino!
+
+Received: Arduino received: Hello Arduino!
+Sent: Hello Arduino!
+
+Received: Arduino received: Hello Arduino!
+Sent: Hello Arduino!
+```
